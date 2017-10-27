@@ -50,11 +50,13 @@ pizzaController.create = (req, res) => {
 // update method for the pizzacontroller
 pizzaController.update = (req, res) =>{
   const pizzaId = req.params.id;
-  pizza.update({
+  Pizza.update({
     flavor: req.body.flavor,
     description: req.body.description,
     location: req.body.location
-  }, pizzaId).then(quote => {
+  }, pizzaId)
+  .then(pizza => {
+    console.log(pizza)
     res.json ({
       message: "Updated successfully!",
       data: pizza

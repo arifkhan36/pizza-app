@@ -29,14 +29,9 @@ Pizza.findById = (id) => {
 // update method
   Pizza.update = (pizza, id) => {
     return db.one(`
-      UPDATE pizza SET
-      (flavor, description, location)
-      VALUES ($1, $2, $3)
-      RETURNING *
-      `, [pizza.flavor, pizza.description, pizza.location]
+      UPDATE pizza SET flavor = $1, description = $2, location = $3 WHERE id = $4
+      `, [pizza.flavor, pizza.description, pizza.location, id]
       );
-
-
   };
 // delete method
 Pizza.destroy = (id) => {
